@@ -25,10 +25,15 @@ namespace RestAPI.Controllers
         {
             return await _persons.GetPersons(id);
         }
-        [HttpGet("name")]
-        public async Task<ActionResult<PersonModel>> GetByName(string name, string gender)
+        [HttpGet("search")]
+        public async Task<ActionResult<PersonModel>> GetByName(string fn, string ln, string address)
         {
-            return await _persons.GetPersons(name, gender);
+            return await _persons.GetPersons(fn, ln, address);
+        }
+        [HttpGet("gender")]
+        public async Task<ActionResult<PersonModel>> GetByName(string gender)
+        {
+            return await _persons.GetPersons(gender);
         }
 
         [HttpPost]
