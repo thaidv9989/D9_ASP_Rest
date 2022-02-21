@@ -6,8 +6,8 @@ namespace RestAPI.Services
     {
         Task<IEnumerable<PersonModel>> GetPersons();
         Task<PersonModel> GetPersons(int id);
-        Task<PersonModel> GetPersons(string name, string gender);
-        
+        Task<PersonModel> GetPersons(string fn, string ln, string address);
+        Task<PersonModel> GetPersons(string gender);
         Task<PersonModel> Create(PersonModel person);
         Task Edit(PersonModel person);
 
