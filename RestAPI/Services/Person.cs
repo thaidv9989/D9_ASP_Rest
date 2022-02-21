@@ -31,15 +31,28 @@ namespace RestAPI.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<PersonModel> GetPersons(string name, string gender)
+        public async Task<PersonModel> GetPersons(string fn, string ln, string address)
         {
-            if(name != null)
+            if(fn != null)
             {
-                return await _context.Persons.FirstAsync(x => x.FirstName == name);
+                return _context.Persons.FirstOrDefault(x => x.FirstName == fn && x.LastName == ln && x.Address == address );                
             }
-            if(gender != null)
+            if (ln != null)
             {
-                return await _context.Persons.FirstAsync(x => x.Gender == gender);
+                return _context.Persons.FirstOrDefault(x => x.LastName == ln);
+            }
+            if (address != null)
+            {
+                return _context.Persons.FirstOrDefault(x => x.Address == address);
+            }
+            return null;
+        }
+        public async Task<PersonModel> GetPersons(string gender)
+        {
+            
+            if (gender != null)
+            {
+                return _context.Persons.FirstOrDefault(x => x.Gender == gender);
             }
             return null;
         }
